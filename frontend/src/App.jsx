@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import {
   Code,
   Briefcase,
-  FolderGit2,
   Mail,
   Sun,
   Moon,
@@ -17,7 +16,12 @@ import {
   X,
   Layers,
   Award,
-  Phone
+  Phone,
+  Printer,
+  Users,
+  Calendar,
+  ShieldCheck,
+  PackageCheck
 } from 'lucide-react'
 import './App.css'
 import maniPhoto from './assets/mani_photo.jpg'
@@ -40,7 +44,6 @@ function LinkedinIcon({ size = 18 }) {
     </svg>
   )
 }
-
 
 export default function App() {
   const [theme, setTheme] = useState('dark')
@@ -68,76 +71,108 @@ export default function App() {
     }, 4000)
   }
 
+  // Exact skills from official resume
   const skills = [
-    { name: 'React.js', category: 'frontend', level: 'Advanced', progress: 95 },
+    // Frontend
+    { name: 'React.js', category: 'frontend', level: 'Expert', progress: 95 },
+    { name: 'Next.js', category: 'frontend', level: 'Advanced', progress: 90 },
+    { name: 'React Redux (State Management)', category: 'frontend', level: 'Expert', progress: 92 },
     { name: 'JavaScript (ES6+)', category: 'frontend', level: 'Expert', progress: 95 },
-    { name: 'TypeScript', category: 'frontend', level: 'Intermediate', progress: 85 },
-    { name: 'HTML5 & Modern CSS3', category: 'frontend', level: 'Expert', progress: 98 },
-    { name: 'Tailwind CSS & UI Systems', category: 'frontend', level: 'Advanced', progress: 92 },
-    { name: 'Next.js', category: 'frontend', level: 'Advanced', progress: 88 },
-    { name: 'Node.js & Express', category: 'backend', level: 'Advanced', progress: 85 },
-    { name: 'RESTful API Design', category: 'backend', level: 'Expert', progress: 90 },
-    { name: 'MongoDB / PostgreSQL', category: 'backend', level: 'Intermediate', progress: 82 },
-    { name: 'Git & GitHub Workflows', category: 'tools', level: 'Expert', progress: 94 },
-    { name: 'Vite & Webpack Build Tools', category: 'tools', level: 'Advanced', progress: 90 },
-    { name: 'Docker & Deployment (Vercel/Render)', category: 'tools', level: 'Intermediate', progress: 80 },
+    { name: 'HTML5 & Modern CSS', category: 'frontend', level: 'Expert', progress: 98 },
+    { name: 'Tailwind CSS', category: 'frontend', level: 'Expert', progress: 92 },
+    { name: 'Material UI & Ant Design', category: 'frontend', level: 'Advanced', progress: 88 },
+    { name: 'AG Grid (Data Table)', category: 'frontend', level: 'Expert', progress: 92 },
+
+    // Backend & Database
+    { name: 'Node.js', category: 'backend', level: 'Advanced', progress: 90 },
+    { name: 'Express.js', category: 'backend', level: 'Advanced', progress: 90 },
+    { name: 'PostgreSQL & Triggers', category: 'backend', level: 'Advanced', progress: 88 },
+    { name: 'MySQL & SQL', category: 'backend', level: 'Advanced', progress: 85 },
+    { name: 'REST APIs & RBAC', category: 'backend', level: 'Expert', progress: 92 },
+
+    // Tools & Version Control
+    { name: 'Git & GitHub', category: 'tools', level: 'Expert', progress: 95 },
+    { name: 'Azure Repos & CI/CD Pipelines', category: 'tools', level: 'Advanced', progress: 88 },
+    { name: 'Problem Solving & Debugging', category: 'tools', level: 'Expert', progress: 94 },
+    { name: 'Vite & Build Tooling', category: 'tools', level: 'Advanced', progress: 90 },
   ]
 
   const filteredSkills = activeTab === 'all'
     ? skills
     : skills.filter(s => s.category === activeTab)
 
+  // Experience from official resume
   const experiences = [
     {
-      title: 'Full Stack Web Developer',
+      title: 'Full Stack Developer',
       company: 'Zithtec',
-      period: 'June 2025 - Present',
+      period: 'June 2025 - April 2026',
       location: 'Puducherry / Tamil Nadu, India',
-      desc: 'Developing modern full-stack web applications with React, Vite, Node.js, and Express. Designing responsive user interfaces, implementing robust RESTful APIs, and maintaining clean, high-performance codebases.',
-      tags: ['React', 'JavaScript', 'Node.js', 'Express', 'Vite', 'REST API', 'Git']
+      desc: 'Developed and maintained enterprise web applications using React JS, React Redux, Node JS, and Express JS. Designed responsive user interfaces with React and Tailwind CSS.',
+      bullets: [
+        'Developed and maintained web applications using React JS, React Redux, Node JS, and Express JS.',
+        'Designed responsive user interfaces using React JS and Tailwind CSS.',
+        'Implemented Redux state management using actions, reducers, and selectors.',
+        'Utilized AG Grid for sorting, filtering, and pagination.',
+        'Developed Inventory, Warehouse, and Order Management solutions.',
+        'Integrated PostgreSQL with backend applications using advanced queries and trigger functions.',
+        'Conducted code reviews, fixed bugs, and improved application performance.',
+        'Worked with Git, Azure Repos, and Azure DevOps CI/CD pipelines.',
+        'Collaborated with cross-functional teams to deliver software solutions.'
+      ],
+      tags: ['React JS', 'React Redux', 'Node JS', 'Express JS', 'PostgreSQL', 'AG Grid', 'Tailwind CSS', 'Azure DevOps']
     }
   ]
 
+  // Education from official resume
   const education = [
     {
-      title: 'Master of Computer Applications (MCA)',
-      company: 'Christ Engineering College',
+      title: 'MCA (Master of Computer Applications)',
+      company: 'Christ College of Engineering & Technology',
       period: '2023 - 2025',
       location: 'Puducherry, India',
-      desc: 'Specialized in Advanced Web Engineering, Cloud Architectures, Database Management Systems, and Modern Full Stack Development.',
-      tags: ['Full Stack Development', 'Software Engineering', 'Cloud & DevOps', 'DBMS']
+      desc: 'Master of Computer Applications graduate with extensive practical knowledge in modern full stack engineering, databases, and enterprise software design.',
+      tags: ['Full Stack Development', 'Database Engineering', 'Enterprise Architectures']
     },
     {
-      title: 'Bachelor of Science (B.Sc) in Computer Science',
-      company: 'Pondicherry University',
+      title: 'B.Sc Computer Science',
+      company: 'Tagore Arts and Science College',
       period: '2020 - 2023',
       location: 'Puducherry, India',
-      desc: 'Graduated with a solid foundation in Software Engineering, Algorithms, Database Management Systems, and Web Application Development.',
-      tags: ['Data Structures', 'Web Development', 'Computer Networks', 'DBMS']
+      desc: 'Graduated with strong foundation in Software Engineering, Algorithms, Database Management Systems, and Web Application Development.',
+      tags: ['Data Structures', 'Algorithms', 'DBMS', 'Web Technologies']
     }
   ]
 
+  // Project modules from official resume
   const projects = [
     {
-      title: 'Resume Mani - Modern Portfolio',
-      desc: 'High-performance developer portfolio and interactive resume website built with React, Vite, and custom CSS design system.',
-      tech: ['React', 'Vite', 'Design System', 'Responsive UI'],
-      github: 'https://github.com/Manivanan0507/resume_mani',
-      icon: '⚡'
+      title: 'Leave Management Module',
+      desc: 'Enterprise employee leave management system featuring leave requests, multi-tier manager & admin approval workflows, leave balance tracking, and support for Casual, Sick, Earned Leave, and Loss of Pay (LOP).',
+      tech: ['React JS', 'React Redux', 'Node JS', 'Express JS', 'PostgreSQL'],
+      category: 'Enterprise Solution',
+      icon: <Calendar size={28} color="#6366f1" />
     },
     {
-      title: 'Full Stack Task & Project Manager',
-      desc: 'Real-time collaborative kanban task management tool with drag-and-drop, authentication, and team analytics.',
-      tech: ['React', 'Node.js', 'Express', 'MongoDB'],
-      github: 'https://github.com/Manivanan0507',
-      icon: '🚀'
+      title: 'Government Holidays Module',
+      desc: 'Country-wise and state-wise holiday calendar management system with dynamic rule engines, location-specific holiday configurations, and holiday calendar synchronization for multi-region teams.',
+      tech: ['React JS', 'Next.js', 'Express JS', 'PostgreSQL', 'Tailwind CSS'],
+      category: 'Enterprise Module',
+      icon: <PackageCheck size={28} color="#06b6d4" />
     },
     {
-      title: 'E-Commerce Cloud Storefront',
-      desc: 'Modern online storefront with cart management, dynamic product filtering, payment gateway integration, and order tracking.',
-      tech: ['Next.js', 'TypeScript', 'Tailwind', 'Stripe'],
-      github: 'https://github.com/Manivanan0507',
-      icon: '💎'
+      title: 'User Management & RBAC Module',
+      desc: 'Comprehensive employee profile management system featuring granular role-based access control (RBAC), secure token-based authentication and authorization mechanisms.',
+      tech: ['React JS', 'Node JS', 'JWT Auth', 'PostgreSQL', 'Redux'],
+      category: 'Security & Auth',
+      icon: <ShieldCheck size={28} color="#ec4899" />
+    },
+    {
+      title: 'Inventory, Warehouse & Order Management',
+      desc: 'High-throughput inventory tracking and order lifecycle system featuring AG Grid for high-performance sorting, filtering, pagination, and automated PostgreSQL trigger functions.',
+      tech: ['React JS', 'AG Grid', 'PostgreSQL Triggers', 'Azure DevOps'],
+      category: 'Supply Chain',
+      icon: <Layers size={28} color="#22c55e" />
     }
   ]
 
@@ -147,7 +182,7 @@ export default function App() {
       <header className="header">
         <div className="nav-container">
           <a href="#" className="brand-logo" id="nav-brand">
-            <span className="logo-badge">MANI</span>
+            <span className="logo-badge">MANIVANAN V</span>
             <span>.dev</span>
           </a>
 
@@ -193,50 +228,55 @@ export default function App() {
               <div className="hero-content">
                 <div className="status-badge">
                   <span className="status-dot"></span>
-                  <span>Available for Full-time & Freelance Roles</span>
+                  <span>Full Stack Developer • Available for Opportunities</span>
                 </div>
 
                 <h1 className="hero-title">
-                  Hi, I'm <span className="gradient-text">Manivanan</span>
+                  Hi, I'm <span className="gradient-text">Manivanan V</span>
                 </h1>
 
                 <div className="hero-subtitle">
                   <Terminal size={20} />
-                  <span>Full Stack Developer & Software Craftsman</span>
+                  <span>Full Stack Developer (React.js • Node.js • PostgreSQL)</span>
                 </div>
 
                 <p className="hero-description">
-                  Passionate Full Stack Developer with 1 year of hands-on experience building modern, responsive, and performant web applications with React, Node.js, and clean code principles.
+                  Motivated and detail-oriented MCA graduate with hands-on experience in Full Stack Web Development using React.js, Next.js, Node.js, Express.js, PostgreSQL, MySQL, and Redux. Experienced in building enterprise solutions including Leave Management, Government Holidays, and Inventory & Warehouse systems.
                 </p>
 
                 <div className="hero-cta">
-                  <a href="#projects" className="btn-primary" id="hero-explore-projects">
-                    <span>Explore My Work</span>
-                    <ChevronRight size={16} />
-                  </a>
                   <button
-                    className="btn-outline"
+                    className="btn-primary"
                     onClick={() => setShowResumeModal(true)}
-                    id="hero-download-cv"
+                    id="hero-view-cv"
+                  >
+                    <span>View Resume</span>
+                    <ChevronRight size={16} />
+                  </button>
+                  <a
+                    href="/Manivanan_V_Resume.pdf"
+                    download="Manivanan_V_Resume.pdf"
+                    className="btn-outline"
+                    id="hero-download-pdf"
                   >
                     <FileDown size={16} />
-                    <span>Download CV</span>
-                  </button>
+                    <span>Download PDF</span>
+                  </a>
                 </div>
 
                 <div className="social-links">
                   <a
-                    href="https://github.com/Manivanan0507"
+                    href="https://github.com/manivanan14"
                     target="_blank"
                     rel="noreferrer"
                     className="social-icon-btn"
-                    title="GitHub"
+                    title="GitHub: manivanan14"
                     id="hero-social-github"
                   >
                     <GithubIcon size={18} />
                   </a>
                   <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/manivanan-v-453282249"
                     target="_blank"
                     rel="noreferrer"
                     className="social-icon-btn"
@@ -246,12 +286,20 @@ export default function App() {
                     <LinkedinIcon size={18} />
                   </a>
                   <a
-                    href="mailto:contact@manivanan.dev"
+                    href="mailto:manivanan6424@gmail.com"
                     className="social-icon-btn"
-                    title="Email"
+                    title="Email: manivanan6424@gmail.com"
                     id="hero-social-email"
                   >
                     <Mail size={18} />
+                  </a>
+                  <a
+                    href="tel:7826811406"
+                    className="social-icon-btn"
+                    title="Phone: 7826811406"
+                    id="hero-social-phone"
+                  >
+                    <Phone size={18} />
                   </a>
                 </div>
               </div>
@@ -261,7 +309,7 @@ export default function App() {
                 <div className="visual-ambient-orb"></div>
                 <div className="avatar-card-wrapper">
                   <div className="avatar-image-container">
-                    <img src={maniPhoto} alt="Manivanan (Mani)" className="avatar-image" />
+                    <img src={maniPhoto} alt="Manivanan V" className="avatar-image" />
                   </div>
 
                   {/* Floating Badges */}
@@ -271,7 +319,7 @@ export default function App() {
                     </div>
                     <div>
                       <div className="badge-title">Experience</div>
-                      <div className="badge-val">1 Year Experience</div>
+                      <div className="badge-val">Zithtec (Full Stack)</div>
                     </div>
                   </div>
 
@@ -280,8 +328,8 @@ export default function App() {
                       <Code size={18} />
                     </div>
                     <div>
-                      <div className="badge-title">Focus</div>
-                      <div className="badge-val">React & Node.js</div>
+                      <div className="badge-title">Education</div>
+                      <div className="badge-val">MCA Graduate</div>
                     </div>
                   </div>
                 </div>
@@ -298,31 +346,31 @@ export default function App() {
                 <div className="stat-icon"><Briefcase size={24} /></div>
                 <div>
                   <div className="stat-number">1 Year</div>
-                  <div className="stat-label">Professional Experience</div>
+                  <div className="stat-label">Full Stack Experience</div>
                 </div>
               </div>
 
               <div className="stat-card">
-                <div className="stat-icon"><Code size={24} /></div>
+                <div className="stat-icon"><PackageCheck size={24} /></div>
                 <div>
-                  <div className="stat-number">15+</div>
-                  <div className="stat-label">Projects & Applications</div>
+                  <div className="stat-number">4+</div>
+                  <div className="stat-label">Enterprise Modules Built</div>
                 </div>
               </div>
 
               <div className="stat-card">
-                <div className="stat-icon"><Award size={24} /></div>
+                <div className="stat-icon"><Users size={24} /></div>
                 <div>
-                  <div className="stat-number">100%</div>
-                  <div className="stat-label">Commitment & Quality</div>
+                  <div className="stat-number">5+</div>
+                  <div className="stat-label">Interns Trained in React/Node</div>
                 </div>
               </div>
 
               <div className="stat-card">
                 <div className="stat-icon"><Layers size={24} /></div>
                 <div>
-                  <div className="stat-number">12+</div>
-                  <div className="stat-label">Tech Tools & Stacks</div>
+                  <div className="stat-number">10+</div>
+                  <div className="stat-label">Modern Tech Stacks</div>
                 </div>
               </div>
             </div>
@@ -335,7 +383,7 @@ export default function App() {
             <div className="section-header">
               <span className="section-tag">Technical Competencies</span>
               <h2 className="section-title">Skills & Technologies</h2>
-              <p className="section-desc">A curated set of tools and technologies I use to build scalable web software.</p>
+              <p className="section-desc">Technical proficiencies matching enterprise development standards.</p>
             </div>
 
             <div className="skills-filter">
@@ -371,8 +419,8 @@ export default function App() {
         <section id="experience" className="experience-section">
           <div className="container">
             <div className="section-header">
-              <span className="section-tag">Career Pathway</span>
-              <h2 className="section-title">Experience & Education</h2>
+              <span className="section-tag">Career & Education</span>
+              <h2 className="section-title">Professional Background</h2>
               <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
                 <button
                   className={`filter-btn ${timelineType === 'experience' ? 'active' : ''}`}
@@ -405,6 +453,13 @@ export default function App() {
                       <span>{item.location}</span>
                     </div>
                     <p className="timeline-desc">{item.desc}</p>
+                    {item.bullets && (
+                      <ul style={{ margin: '0.5rem 0 1rem', paddingLeft: '1.2rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                        {item.bullets.map((b, i) => (
+                          <li key={i} style={{ marginBottom: '0.35rem' }}>{b}</li>
+                        ))}
+                      </ul>
+                    )}
                     <div className="timeline-tags">
                       {item.tags.map(tag => (
                         <span key={tag} className="tag-badge">{tag}</span>
@@ -414,16 +469,27 @@ export default function App() {
                 </div>
               ))}
             </div>
+
+            {/* Extra Activities Card */}
+            <div style={{ maxWidth: '800px', margin: '2rem auto 0', padding: '1.5rem', background: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
+                <Users size={22} color="var(--primary)" />
+                <h4 style={{ fontSize: '1.15rem', fontWeight: 700 }}>Extra Activities & Mentorship</h4>
+              </div>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                <strong>Technical Training:</strong> Trained more than 5 interns in <strong>React JS</strong> and <strong>Node JS</strong> through practical hands-on sessions, real-world code reviews, and coding exercises.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* Projects Section */}
+        {/* Project Modules Worked */}
         <section id="projects" className="projects-section">
           <div className="container">
             <div className="section-header">
-              <span className="section-tag">Portfolio Showcase</span>
-              <h2 className="section-title">Featured Projects</h2>
-              <p className="section-desc">Selected work and open-source applications built with modern web tech.</p>
+              <span className="section-tag">Project Modules Worked</span>
+              <h2 className="section-title">Enterprise Software Modules</h2>
+              <p className="section-desc">Key systems and architectural modules developed and deployed at Zithtec.</p>
             </div>
 
             <div className="projects-grid">
@@ -433,24 +499,15 @@ export default function App() {
                     <span className="project-banner-icon">{proj.icon}</span>
                   </div>
                   <div className="project-content">
+                    <span style={{ fontSize: '0.75rem', color: 'var(--secondary)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '0.25rem' }}>
+                      {proj.category}
+                    </span>
                     <h3 className="project-title">{proj.title}</h3>
                     <p className="project-desc">{proj.desc}</p>
                     <div className="project-tech">
                       {proj.tech.map(t => (
                         <span key={t} className="tag-badge">{t}</span>
                       ))}
-                    </div>
-                    <div className="project-links">
-                      <a
-                        href={proj.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="btn-outline"
-                        style={{ padding: '0.45rem 1rem', fontSize: '0.85rem' }}
-                      >
-                        <GithubIcon size={15} />
-                        <span>Source Code</span>
-                      </a>
                     </div>
                   </div>
                 </div>
@@ -464,8 +521,8 @@ export default function App() {
           <div className="container">
             <div className="section-header">
               <span className="section-tag">Get in Touch</span>
-              <h2 className="section-title">Let's Build Something Together</h2>
-              <p className="section-desc">Have a project, opportunity, or idea? Feel free to reach out directly.</p>
+              <h2 className="section-title">Contact Information</h2>
+              <p className="section-desc">Feel free to reach out directly for software development opportunities.</p>
             </div>
 
             <div className="contact-grid">
@@ -474,15 +531,23 @@ export default function App() {
                   <div className="info-icon"><Mail size={20} /></div>
                   <div>
                     <div className="info-title">Email</div>
-                    <div className="info-val">manivanan@example.com</div>
+                    <div className="info-val">
+                      <a href="mailto:manivanan6424@gmail.com" style={{ color: 'var(--primary)' }}>
+                        manivanan6424@gmail.com
+                      </a>
+                    </div>
                   </div>
                 </div>
 
                 <div className="info-item">
                   <div className="info-icon"><Phone size={20} /></div>
                   <div>
-                    <div className="info-title">Phone</div>
-                    <div className="info-val">+91 98765 43210</div>
+                    <div className="info-title">Phone / WhatsApp</div>
+                    <div className="info-val">
+                      <a href="tel:7826811406" style={{ color: 'var(--text-primary)' }}>
+                        +91 7826811406
+                      </a>
+                    </div>
                   </div>
                 </div>
 
@@ -490,7 +555,19 @@ export default function App() {
                   <div className="info-icon"><MapPin size={20} /></div>
                   <div>
                     <div className="info-title">Location</div>
-                    <div className="info-val">Puducherry / Tamil Nadu, India</div>
+                    <div className="info-val">Puducherry, India</div>
+                  </div>
+                </div>
+
+                <div className="info-item">
+                  <div className="info-icon"><LinkedinIcon size={20} /></div>
+                  <div>
+                    <div className="info-title">LinkedIn</div>
+                    <div className="info-val">
+                      <a href="https://www.linkedin.com/in/manivanan-v-453282249" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)' }}>
+                        linkedin.com/in/manivanan-v-453282249
+                      </a>
+                    </div>
                   </div>
                 </div>
 
@@ -499,8 +576,8 @@ export default function App() {
                   <div>
                     <div className="info-title">GitHub</div>
                     <div className="info-val">
-                      <a href="https://github.com/Manivanan0507" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)' }}>
-                        github.com/Manivanan0507
+                      <a href="https://github.com/manivanan14" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)' }}>
+                        github.com/manivanan14
                       </a>
                     </div>
                   </div>
@@ -512,8 +589,8 @@ export default function App() {
                 {formSubmitted ? (
                   <div style={{ textAlign: 'center', padding: '2.5rem 1rem' }}>
                     <CheckCircle2 size={52} color="#22c55e" style={{ margin: '0 auto 1rem' }} />
-                    <h3 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '0.5rem' }}>Message Received!</h3>
-                    <p style={{ color: 'var(--text-secondary)' }}>Thank you for reaching out, Mani will respond promptly.</p>
+                    <h3 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '0.5rem' }}>Message Sent!</h3>
+                    <p style={{ color: 'var(--text-secondary)' }}>Thank you for reaching out, Manivanan will respond promptly.</p>
                   </div>
                 ) : (
                   <form onSubmit={handleFormSubmit}>
@@ -523,7 +600,7 @@ export default function App() {
                         id="contact-name"
                         type="text"
                         className="form-input"
-                        placeholder="John Doe"
+                        placeholder="Your Name"
                         required
                         value={formState.name}
                         onChange={e => setFormState({ ...formState, name: e.target.value })}
@@ -535,7 +612,7 @@ export default function App() {
                         id="contact-email"
                         type="email"
                         className="form-input"
-                        placeholder="john@example.com"
+                        placeholder="your.email@example.com"
                         required
                         value={formState.email}
                         onChange={e => setFormState({ ...formState, email: e.target.value })}
@@ -547,7 +624,7 @@ export default function App() {
                         id="contact-message"
                         rows="4"
                         className="form-input"
-                        placeholder="Tell me about your project or role..."
+                        placeholder="Discuss a role, project, or collaboration..."
                         value={formState.message}
                         onChange={e => setFormState({ ...formState, message: e.target.value })}
                       ></textarea>
@@ -564,63 +641,173 @@ export default function App() {
         </section>
       </main>
 
-      {/* Resume Preview Modal */}
+      {/* Complete Official Resume Modal (1:1 with Original PDF) */}
       {showResumeModal && (
         <div className="modal-overlay" onClick={() => setShowResumeModal(false)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <button className="modal-close-btn" onClick={() => setShowResumeModal(false)}>
-              <X size={18} />
-            </button>
-            <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-              <span className="logo-badge" style={{ marginBottom: '0.5rem', display: 'inline-block' }}>RESUME</span>
-              <h2 style={{ fontSize: '1.8rem', fontWeight: 800 }}>Manivanan (Mani)</h2>
-              <p style={{ color: 'var(--text-secondary)' }}>Full Stack Web Developer • Puducherry / Tamil Nadu, India</p>
-            </div>
-
-            <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '1.25rem', marginBottom: '1.25rem' }}>
-              <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', textTransform: 'uppercase', fontSize: '0.85rem' }}>Professional Summary</h4>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                Full stack web developer currently working at Zithtec with 1 year of professional experience building responsive, performant web applications using React, Node.js, Express, and modern tooling. Holds an MCA from Christ Engineering College, Puducherry.
-              </p>
-            </div>
-
-            <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '1.25rem', marginBottom: '1.25rem' }}>
-              <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', textTransform: 'uppercase', fontSize: '0.85rem' }}>Experience & Education</h4>
-              <div style={{ marginBottom: '0.75rem' }}>
-                <p style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)' }}>Full Stack Web Developer — Zithtec</p>
-                <p style={{ fontSize: '0.85rem', color: 'var(--secondary)' }}>June 2025 – Present • Puducherry / Tamil Nadu, India</p>
+          <div className="resume-modal-content" onClick={e => e.stopPropagation()}>
+            {/* Modal Controls */}
+            <div className="modal-actions-bar">
+              <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+                <a
+                  href="/Manivanan_V_Resume.pdf"
+                  download="Manivanan_V_Resume.pdf"
+                  className="btn-primary"
+                  id="modal-download-pdf-btn"
+                >
+                  <FileDown size={16} />
+                  <span>Download Original PDF</span>
+                </a>
+                <button
+                  className="btn-outline"
+                  onClick={() => window.print()}
+                  id="modal-print-btn"
+                >
+                  <Printer size={16} />
+                  <span>Print Resume</span>
+                </button>
               </div>
-              <div style={{ marginBottom: '0.75rem' }}>
-                <p style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)' }}>Master of Computer Applications (MCA)</p>
-                <p style={{ fontSize: '0.85rem', color: 'var(--secondary)' }}>Christ Engineering College, Puducherry • 2023 – 2025</p>
-              </div>
-              <div>
-                <p style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)' }}>Bachelor of Science (B.Sc) in Computer Science</p>
-                <p style={{ fontSize: '0.85rem', color: 'var(--secondary)' }}>Pondicherry University • 2020 – 2023</p>
-              </div>
-            </div>
 
-            <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '1.25rem', marginBottom: '1.25rem' }}>
-              <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', textTransform: 'uppercase', fontSize: '0.85rem' }}>Core Technical Skills</h4>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                React.js, JavaScript (ES6+), TypeScript, Next.js, Node.js, Express, REST APIs, HTML5, CSS3, Tailwind CSS, MongoDB, Git, GitHub, Docker, Vite.
-              </p>
-            </div>
-
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end', marginTop: '1.5rem' }}>
               <button
-                className="btn-outline"
-                onClick={() => window.print()}
+                className="modal-close-btn"
+                onClick={() => setShowResumeModal(false)}
+                title="Close"
               >
-                Print / Save PDF
+                <X size={18} />
               </button>
-              <button
-                className="btn-primary"
-                onClick={() => alert('Resume download initiated for Manivanan!')}
-              >
-                <FileDown size={16} />
-                Download File
-              </button>
+            </div>
+
+            {/* Resume Document Sheet */}
+            <div className="resume-paper printable-resume">
+              {/* Header */}
+              <div className="resume-header">
+                <h1 className="resume-name">MANIVANAN V</h1>
+                <div className="resume-contact-bar">
+                  <span><strong>Email:</strong> <a href="mailto:manivanan6424@gmail.com" className="resume-contact-link">manivanan6424@gmail.com</a></span>
+                  <span>•</span>
+                  <span><strong>Contact:</strong> <a href="tel:7826811406" className="resume-contact-link">7826811406</a></span>
+                  <span>•</span>
+                  <span><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/manivanan-v-453282249" target="_blank" rel="noreferrer" className="resume-contact-link">linkedin.com/in/manivanan-v-453282249</a></span>
+                  <span>•</span>
+                  <span><strong>GitHub:</strong> <a href="https://github.com/manivanan14" target="_blank" rel="noreferrer" className="resume-contact-link">github.com/manivanan14</a></span>
+                </div>
+              </div>
+
+              {/* Summary */}
+              <div className="resume-section">
+                <h2 className="resume-section-title">SUMMARY</h2>
+                <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}>
+                  Motivated and detail-oriented MCA graduate with hands-on experience in Full Stack Web Development using React.js, Next.js, Node.js, Express.js, HTML, CSS, JavaScript, PostgreSQL, MySQL, and SQL. Experienced in developing Leave Management Systems and Government Holiday Management modules. Skilled in building responsive user interfaces, REST APIs, database management, and problem-solving. Seeking an opportunity to contribute technical skills and grow as a Software Developer.
+                </p>
+              </div>
+
+              {/* Technical Skills */}
+              <div className="resume-section">
+                <h2 className="resume-section-title">TECHNICAL SKILLS</h2>
+                <div className="resume-skills-group">
+                  <strong>Web Technologies:</strong> HTML, CSS, JavaScript
+                </div>
+                <div className="resume-skills-group">
+                  <strong>Frontend:</strong> React JS, NextJS, React Redux, Tailwind CSS, Material UI, Ant Design
+                </div>
+                <div className="resume-skills-group">
+                  <strong>Backend:</strong> Node JS, Express JS
+                </div>
+                <div className="resume-skills-group">
+                  <strong>Database:</strong> PostgreSQL, MySQL, SQL
+                </div>
+                <div className="resume-skills-group">
+                  <strong>Data Table:</strong> AG Grid
+                </div>
+                <div className="resume-skills-group">
+                  <strong>Version Control & DevOps:</strong> Git, GitHub, Azure Repos, Azure DevOps CI/CD pipelines
+                </div>
+                <div className="resume-skills-group">
+                  <strong>Core Competencies:</strong> Problem Solving and Debugging Skills
+                </div>
+              </div>
+
+              {/* Professional Experience */}
+              <div className="resume-section">
+                <h2 className="resume-section-title">PROFESSIONAL EXPERIENCE</h2>
+                <div className="resume-sub-heading">
+                  <div className="resume-role-title">Zithtec — Full Stack Developer</div>
+                  <div className="resume-meta-date">June 2025 – April 2026</div>
+                </div>
+
+                <ul className="resume-bullet-list">
+                  <li className="resume-bullet-item">Developed and maintained web applications using React JS, React Redux, Node JS, and Express JS.</li>
+                  <li className="resume-bullet-item">Designed responsive user interfaces using React JS and Tailwind CSS.</li>
+                  <li className="resume-bullet-item">Implemented Redux state management using actions, reducers, and selectors.</li>
+                  <li className="resume-bullet-item">Utilized AG Grid for sorting, filtering, and pagination.</li>
+                  <li className="resume-bullet-item">Developed Inventory, Warehouse, and Order Management solutions.</li>
+                  <li className="resume-bullet-item">Integrated PostgreSQL with backend applications.</li>
+                  <li className="resume-bullet-item">Used advanced PostgreSQL queries and trigger functions.</li>
+                  <li className="resume-bullet-item">Conducted code reviews, fixed bugs, and improved application performance.</li>
+                  <li className="resume-bullet-item">Worked with Git, Azure Repos, and Azure DevOps CI/CD pipelines.</li>
+                  <li className="resume-bullet-item">Collaborated with cross-functional teams to deliver software solutions.</li>
+                </ul>
+              </div>
+
+              {/* Project Modules Worked */}
+              <div className="resume-section">
+                <h2 className="resume-section-title">PROJECT MODULES WORKED</h2>
+
+                <div style={{ marginBottom: '1rem' }}>
+                  <div style={{ fontWeight: 700, fontSize: '0.98rem', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>Leave Management Module</div>
+                  <ul className="resume-bullet-list">
+                    <li className="resume-bullet-item">Developed employee leave request and approval workflows.</li>
+                    <li className="resume-bullet-item">Implemented leave types such as Casual Leave, Sick Leave, Earned Leave, and Loss of Pay.</li>
+                    <li className="resume-bullet-item">Created leave balance tracking and leave history management.</li>
+                    <li className="resume-bullet-item">Developed manager and admin approval processes.</li>
+                  </ul>
+                </div>
+
+                <div style={{ marginBottom: '1rem' }}>
+                  <div style={{ fontWeight: 700, fontSize: '0.98rem', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>Government Holidays Module</div>
+                  <ul className="resume-bullet-list">
+                    <li className="resume-bullet-item">Implemented country-wise and state-wise holiday management.</li>
+                    <li className="resume-bullet-item">Developed features to add, edit, and manage government holidays.</li>
+                    <li className="resume-bullet-item">Integrated holiday calendars and holiday rules.</li>
+                    <li className="resume-bullet-item">Managed holiday configurations for different locations.</li>
+                  </ul>
+                </div>
+
+                <div style={{ marginBottom: '0.5rem' }}>
+                  <div style={{ fontWeight: 700, fontSize: '0.98rem', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>User Management Module</div>
+                  <ul className="resume-bullet-list">
+                    <li className="resume-bullet-item">Managed employee profiles and role-based access.</li>
+                    <li className="resume-bullet-item">Implemented authentication and authorization features.</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Extra Activities */}
+              <div className="resume-section">
+                <h2 className="resume-section-title">EXTRA ACTIVITIES</h2>
+                <div style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                  <strong>Technical Training:</strong> Trained more than 5 interns in React JS and Node JS through practical sessions and coding exercises.
+                </div>
+              </div>
+
+              {/* Education */}
+              <div className="resume-section" style={{ marginBottom: 0 }}>
+                <h2 className="resume-section-title">EDUCATION</h2>
+                <div style={{ marginBottom: '0.75rem' }}>
+                  <div className="resume-sub-heading">
+                    <span className="resume-role-title">MCA (Master of Computer Applications)</span>
+                    <span className="resume-meta-date">2023 – 2025</span>
+                  </div>
+                  <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Christ College of Engineering & Technology</div>
+                </div>
+
+                <div>
+                  <div className="resume-sub-heading">
+                    <span className="resume-role-title">B.Sc Computer Science</span>
+                    <span className="resume-meta-date">2020 – 2023</span>
+                  </div>
+                  <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Tagore Arts and Science College</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -631,15 +818,17 @@ export default function App() {
         <div className="container">
           <div className="footer-content">
             <div>
-              <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>resume_mani</span> • Crafted with React & Vite
+              <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>MANIVANAN V</span> • Full Stack Developer
             </div>
             <div>
-              Repository: <a href="https://github.com/Manivanan0507/resume_mani" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>
-                github.com/Manivanan0507/resume_mani
+              GitHub: <a href="https://github.com/manivanan14" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>
+                github.com/manivanan14
+              </a> • Repo: <a href="https://github.com/Manivanan0507/resume_mani" target="_blank" rel="noreferrer" style={{ color: 'var(--secondary)', textDecoration: 'underline' }}>
+                resume_mani
               </a>
             </div>
             <div>
-              © {new Date().getFullYear()} Manivanan. All rights reserved.
+              © {new Date().getFullYear()} Manivanan V. All rights reserved.
             </div>
           </div>
         </div>
