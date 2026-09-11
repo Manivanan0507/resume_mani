@@ -20,7 +20,7 @@ import {
   Phone
 } from 'lucide-react'
 import './App.css'
-import avatarImg from './assets/avatar.jpg'
+import maniPhoto from './assets/mani_photo.jpg'
 
 function GithubIcon({ size = 18 }) {
   return (
@@ -83,36 +83,28 @@ export default function App() {
     { name: 'Docker & Deployment (Vercel/Render)', category: 'tools', level: 'Intermediate', progress: 80 },
   ]
 
-  const filteredSkills = activeTab === 'all' 
-    ? skills 
+  const filteredSkills = activeTab === 'all'
+    ? skills
     : skills.filter(s => s.category === activeTab)
 
   const experiences = [
     {
       title: 'Full Stack Web Developer',
-      company: 'Tech Solutions & Innovation Labs',
-      period: '2023 - Present',
+      company: 'Tech Solutions & Web Services',
+      period: '1 Year Experience (2025 - Present)',
       location: 'Tamil Nadu, India',
-      desc: 'Architected high-performance React web applications and REST APIs. Optimized rendering speeds by 40% and led end-to-end frontend and backend feature lifecycles.',
-      tags: ['React', 'JavaScript', 'Node.js', 'Vite', 'REST API']
-    },
-    {
-      title: 'Frontend Developer',
-      company: 'Digital Systems Inc.',
-      period: '2021 - 2023',
-      location: 'India',
-      desc: 'Designed dynamic responsive web interfaces, crafted scalable design systems, and collaborated closely with product managers and backend developers.',
-      tags: ['JavaScript', 'HTML5', 'CSS3', 'React', 'Git']
+      desc: 'Engineered responsive React web applications and REST APIs with Node.js & Express. Designed modern UI components, optimized frontend performance, and delivered clean, maintainable code.',
+      tags: ['React', 'JavaScript', 'Node.js', 'Vite', 'REST API', 'Git']
     }
   ]
 
   const education = [
     {
-      title: 'Bachelor of Engineering (B.E.) in Computer Science',
-      company: 'Anna University Affiliated Institution',
-      period: '2017 - 2021',
-      location: 'Tamil Nadu, India',
-      desc: 'Graduated with strong foundation in Software Engineering, Algorithms, Database Management Systems, and Web Application Development.',
+      title: 'Bachelor of Computer Science (Bsc)',
+      company: 'pondicherry university',
+      period: '2020 - 2023',
+      location: 'Puducherry, India',
+      desc: 'Graduated with a solid foundation in Software Engineering, Algorithms, Database Management Systems, and Modern Web Application Development.',
       tags: ['Data Structures', 'Web Development', 'Computer Networks', 'DBMS']
     }
   ]
@@ -160,16 +152,16 @@ export default function App() {
           </ul>
 
           <div className="nav-actions">
-            <button 
-              className="theme-toggle-btn" 
-              onClick={toggleTheme} 
+            <button
+              className="theme-toggle-btn"
+              onClick={toggleTheme}
               title="Toggle Theme"
               id="theme-toggle-btn"
             >
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
-            <button 
-              className="btn-outline" 
+            <button
+              className="btn-outline"
               onClick={() => setShowResumeModal(true)}
               id="view-resume-nav-btn"
             >
@@ -206,8 +198,7 @@ export default function App() {
                 </div>
 
                 <p className="hero-description">
-                  Passionate engineer crafting robust, performant, and beautifully designed web applications. 
-                  Specialized in modern React ecosystems, scalable architectures, and seamless user experiences.
+                  Passionate Full Stack Developer with 1 year of hands-on experience building modern, responsive, and performant web applications with React, Node.js, and clean code principles.
                 </p>
 
                 <div className="hero-cta">
@@ -215,8 +206,8 @@ export default function App() {
                     <span>Explore My Work</span>
                     <ChevronRight size={16} />
                   </a>
-                  <button 
-                    className="btn-outline" 
+                  <button
+                    className="btn-outline"
                     onClick={() => setShowResumeModal(true)}
                     id="hero-download-cv"
                   >
@@ -226,29 +217,29 @@ export default function App() {
                 </div>
 
                 <div className="social-links">
-                  <a 
-                    href="https://github.com/Manivanan0507" 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className="social-icon-btn" 
+                  <a
+                    href="https://github.com/Manivanan0507"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-icon-btn"
                     title="GitHub"
                     id="hero-social-github"
                   >
                     <GithubIcon size={18} />
                   </a>
-                  <a 
-                    href="https://linkedin.com" 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className="social-icon-btn" 
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-icon-btn"
                     title="LinkedIn"
                     id="hero-social-linkedin"
                   >
                     <LinkedinIcon size={18} />
                   </a>
-                  <a 
-                    href="mailto:contact@manivanan.dev" 
-                    className="social-icon-btn" 
+                  <a
+                    href="mailto:contact@manivanan.dev"
+                    className="social-icon-btn"
                     title="Email"
                     id="hero-social-email"
                   >
@@ -257,12 +248,12 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Hero Visual Card with Avatar & Badges */}
+              {/* Hero Visual Card with Photo & Badges */}
               <div className="hero-visual">
                 <div className="visual-ambient-orb"></div>
                 <div className="avatar-card-wrapper">
                   <div className="avatar-image-container">
-                    <img src={avatarImg} alt="Manivanan Avatar" className="avatar-image" />
+                    <img src={maniPhoto} alt="Manivanan (Mani)" className="avatar-image" />
                   </div>
 
                   {/* Floating Badges */}
@@ -272,7 +263,7 @@ export default function App() {
                     </div>
                     <div>
                       <div className="badge-title">Experience</div>
-                      <div className="badge-val">3+ Years Pro</div>
+                      <div className="badge-val">1 Year Experience</div>
                     </div>
                   </div>
 
@@ -298,16 +289,16 @@ export default function App() {
               <div className="stat-card">
                 <div className="stat-icon"><Briefcase size={24} /></div>
                 <div>
-                  <div className="stat-number">25+</div>
-                  <div className="stat-label">Projects Completed</div>
+                  <div className="stat-number">1 Year</div>
+                  <div className="stat-label">Professional Experience</div>
                 </div>
               </div>
 
               <div className="stat-card">
                 <div className="stat-icon"><Code size={24} /></div>
                 <div>
-                  <div className="stat-number">100k+</div>
-                  <div className="stat-label">Lines of Clean Code</div>
+                  <div className="stat-number">15+</div>
+                  <div className="stat-label">Projects & Applications</div>
                 </div>
               </div>
 
@@ -315,14 +306,14 @@ export default function App() {
                 <div className="stat-icon"><Award size={24} /></div>
                 <div>
                   <div className="stat-number">100%</div>
-                  <div className="stat-label">Client Satisfaction</div>
+                  <div className="stat-label">Commitment & Quality</div>
                 </div>
               </div>
 
               <div className="stat-card">
                 <div className="stat-icon"><Layers size={24} /></div>
                 <div>
-                  <div className="stat-number">15+</div>
+                  <div className="stat-number">12+</div>
                   <div className="stat-label">Tech Tools & Stacks</div>
                 </div>
               </div>
@@ -375,14 +366,14 @@ export default function App() {
               <span className="section-tag">Career Pathway</span>
               <h2 className="section-title">Experience & Education</h2>
               <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
-                <button 
+                <button
                   className={`filter-btn ${timelineType === 'experience' ? 'active' : ''}`}
                   onClick={() => setTimelineType('experience')}
                   id="timeline-btn-experience"
                 >
                   Experience
                 </button>
-                <button 
+                <button
                   className={`filter-btn ${timelineType === 'education' ? 'active' : ''}`}
                   onClick={() => setTimelineType('education')}
                   id="timeline-btn-education"
@@ -442,11 +433,11 @@ export default function App() {
                       ))}
                     </div>
                     <div className="project-links">
-                      <a 
-                        href={proj.github} 
-                        target="_blank" 
-                        rel="noreferrer" 
-                        className="btn-outline" 
+                      <a
+                        href={proj.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-outline"
                         style={{ padding: '0.45rem 1rem', fontSize: '0.85rem' }}
                       >
                         <GithubIcon size={15} />
@@ -520,34 +511,34 @@ export default function App() {
                   <form onSubmit={handleFormSubmit}>
                     <div className="form-group">
                       <label className="form-label" htmlFor="contact-name">Full Name</label>
-                      <input 
-                        id="contact-name" 
-                        type="text" 
-                        className="form-input" 
-                        placeholder="John Doe" 
-                        required 
+                      <input
+                        id="contact-name"
+                        type="text"
+                        className="form-input"
+                        placeholder="John Doe"
+                        required
                         value={formState.name}
                         onChange={e => setFormState({ ...formState, name: e.target.value })}
                       />
                     </div>
                     <div className="form-group">
                       <label className="form-label" htmlFor="contact-email">Email Address</label>
-                      <input 
-                        id="contact-email" 
-                        type="email" 
-                        className="form-input" 
-                        placeholder="john@example.com" 
-                        required 
+                      <input
+                        id="contact-email"
+                        type="email"
+                        className="form-input"
+                        placeholder="john@example.com"
+                        required
                         value={formState.email}
                         onChange={e => setFormState({ ...formState, email: e.target.value })}
                       />
                     </div>
                     <div className="form-group">
                       <label className="form-label" htmlFor="contact-message">Message</label>
-                      <textarea 
-                        id="contact-message" 
-                        rows="4" 
-                        className="form-input" 
+                      <textarea
+                        id="contact-message"
+                        rows="4"
+                        className="form-input"
                         placeholder="Tell me about your project or role..."
                         value={formState.message}
                         onChange={e => setFormState({ ...formState, message: e.target.value })}
@@ -581,7 +572,7 @@ export default function App() {
             <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '1.25rem', marginBottom: '1.25rem' }}>
               <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', textTransform: 'uppercase', fontSize: '0.85rem' }}>Professional Summary</h4>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                Full stack developer with extensive experience building modern web applications with React, Node.js, Express, and Vite. Passionate about clean code, UI engineering, and high-availability web products.
+                Full stack web developer with 1 year of professional experience building responsive, performant web applications using React, Node.js, Express, and modern tooling. Passionate about clean architecture, UI engineering, and rapid problem-solving.
               </p>
             </div>
 
@@ -593,14 +584,14 @@ export default function App() {
             </div>
 
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end', marginTop: '1.5rem' }}>
-              <button 
-                className="btn-outline" 
+              <button
+                className="btn-outline"
                 onClick={() => window.print()}
               >
                 Print / Save PDF
               </button>
-              <button 
-                className="btn-primary" 
+              <button
+                className="btn-primary"
                 onClick={() => alert('Resume download initiated for Manivanan!')}
               >
                 <FileDown size={16} />
