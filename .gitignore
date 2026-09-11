@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Production build
+dist/
+dist-ssr/
+frontend/dist/
+
+# OS / Editor files
+.DS_Store
+.vscode/
+.idea/
+*.log
+*.local
