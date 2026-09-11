@@ -90,21 +90,29 @@ export default function App() {
   const experiences = [
     {
       title: 'Full Stack Web Developer',
-      company: 'Tech Solutions & Web Services',
-      period: '1 Year Experience (2025 - Present)',
-      location: 'Tamil Nadu, India',
-      desc: 'Engineered responsive React web applications and REST APIs with Node.js & Express. Designed modern UI components, optimized frontend performance, and delivered clean, maintainable code.',
-      tags: ['React', 'JavaScript', 'Node.js', 'Vite', 'REST API', 'Git']
+      company: 'Zithtec',
+      period: 'June 2025 - Present',
+      location: 'Puducherry / Tamil Nadu, India',
+      desc: 'Developing modern full-stack web applications with React, Vite, Node.js, and Express. Designing responsive user interfaces, implementing robust RESTful APIs, and maintaining clean, high-performance codebases.',
+      tags: ['React', 'JavaScript', 'Node.js', 'Express', 'Vite', 'REST API', 'Git']
     }
   ]
 
   const education = [
     {
-      title: 'Bachelor of Computer Science (Bsc)',
-      company: 'pondicherry university',
+      title: 'Master of Computer Applications (MCA)',
+      company: 'Christ Engineering College',
+      period: '2023 - 2025',
+      location: 'Puducherry, India',
+      desc: 'Specialized in Advanced Web Engineering, Cloud Architectures, Database Management Systems, and Modern Full Stack Development.',
+      tags: ['Full Stack Development', 'Software Engineering', 'Cloud & DevOps', 'DBMS']
+    },
+    {
+      title: 'Bachelor of Science (B.Sc) in Computer Science',
+      company: 'Pondicherry University',
       period: '2020 - 2023',
       location: 'Puducherry, India',
-      desc: 'Graduated with a solid foundation in Software Engineering, Algorithms, Database Management Systems, and Modern Web Application Development.',
+      desc: 'Graduated with a solid foundation in Software Engineering, Algorithms, Database Management Systems, and Web Application Development.',
       tags: ['Data Structures', 'Web Development', 'Computer Networks', 'DBMS']
     }
   ]
@@ -482,7 +490,7 @@ export default function App() {
                   <div className="info-icon"><MapPin size={20} /></div>
                   <div>
                     <div className="info-title">Location</div>
-                    <div className="info-val">Tamil Nadu, India</div>
+                    <div className="info-val">Puducherry / Tamil Nadu, India</div>
                   </div>
                 </div>
 
@@ -566,14 +574,30 @@ export default function App() {
             <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
               <span className="logo-badge" style={{ marginBottom: '0.5rem', display: 'inline-block' }}>RESUME</span>
               <h2 style={{ fontSize: '1.8rem', fontWeight: 800 }}>Manivanan (Mani)</h2>
-              <p style={{ color: 'var(--text-secondary)' }}>Full Stack Web Developer • Tamil Nadu, India</p>
+              <p style={{ color: 'var(--text-secondary)' }}>Full Stack Web Developer • Puducherry / Tamil Nadu, India</p>
             </div>
 
             <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '1.25rem', marginBottom: '1.25rem' }}>
               <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', textTransform: 'uppercase', fontSize: '0.85rem' }}>Professional Summary</h4>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                Full stack web developer with 1 year of professional experience building responsive, performant web applications using React, Node.js, Express, and modern tooling. Passionate about clean architecture, UI engineering, and rapid problem-solving.
+                Full stack web developer currently working at Zithtec with 1 year of professional experience building responsive, performant web applications using React, Node.js, Express, and modern tooling. Holds an MCA from Christ Engineering College, Puducherry.
               </p>
+            </div>
+
+            <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '1.25rem', marginBottom: '1.25rem' }}>
+              <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', textTransform: 'uppercase', fontSize: '0.85rem' }}>Experience & Education</h4>
+              <div style={{ marginBottom: '0.75rem' }}>
+                <p style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)' }}>Full Stack Web Developer — Zithtec</p>
+                <p style={{ fontSize: '0.85rem', color: 'var(--secondary)' }}>June 2025 – Present • Puducherry / Tamil Nadu, India</p>
+              </div>
+              <div style={{ marginBottom: '0.75rem' }}>
+                <p style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)' }}>Master of Computer Applications (MCA)</p>
+                <p style={{ fontSize: '0.85rem', color: 'var(--secondary)' }}>Christ Engineering College, Puducherry • 2023 – 2025</p>
+              </div>
+              <div>
+                <p style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)' }}>Bachelor of Science (B.Sc) in Computer Science</p>
+                <p style={{ fontSize: '0.85rem', color: 'var(--secondary)' }}>Pondicherry University • 2020 – 2023</p>
+              </div>
             </div>
 
             <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '1.25rem', marginBottom: '1.25rem' }}>
