@@ -21,7 +21,9 @@ import {
   Users,
   Calendar,
   ShieldCheck,
-  PackageCheck
+  PackageCheck,
+  Loader2,
+  AlertCircle
 } from 'lucide-react'
 import './App.css'
 import maniPhoto from './assets/mani_photo.jpg'
@@ -50,8 +52,16 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('all')
   const [timelineType, setTimelineType] = useState('experience')
   const [showResumeModal, setShowResumeModal] = useState(false)
-  const [formState, setFormState] = useState({ name: '', email: '', message: '' })
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    inquiryType: 'Job Opportunity / Hire Me',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [formError, setFormError] = useState(null)
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
@@ -61,14 +71,60 @@ export default function App() {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))
   }
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault()
-    if (!formState.name || !formState.email) return
-    setFormSubmitted(true)
-    setTimeout(() => {
-      setFormSubmitted(false)
-      setFormState({ name: '', email: '', message: '' })
-    }, 4000)
+    if (!formState.name || !formState.email || !formState.message) return
+
+    setIsSubmitting(true)
+    setFormError(null)
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/manivanan6424@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          phone: formState.phone || 'Not provided',
+          inquiry: formState.inquiryType,
+          message: formState.message,
+          _replyto: formState.email,
+          _subject: `Portfolio Inquiry: ${formState.name} - ${formState.inquiryType}`,
+          _template: 'table',
+          _captcha: 'false'
+        })
+      })
+
+      const data = await response.json()
+      
+      if (data.message && data.message.toLowerCase().includes('activation')) {
+        setFormSubmitted('needs_activation')
+      } else if (data.success === 'true' || data.success === true || response.status === 200) {
+        setFormSubmitted('success')
+      } else {
+        throw new Error(data.message || 'Submission failed')
+      }
+    } catch (err) {
+      console.error('Error sending message:', err)
+      setFormError('Could not send message automatically. Please click below to email manivanan6424@gmail.com directly.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const resetForm = () => {
+    setFormSubmitted(false)
+    setFormError(null)
+    setFormState({
+      name: '',
+      email: '',
+      phone: '',
+      inquiryType: 'Job Opportunity / Hire Me',
+      message: ''
+    })
   }
 
   // Exact skills from official resume
@@ -183,7 +239,7 @@ export default function App() {
         <div className="nav-container">
           <a href="#" className="brand-logo" id="nav-brand">
             <span className="logo-badge">MANIVANAN V</span>
-            <span>.dev</span>
+            {/* <span>.dev</span> */}
           </a>
 
           <ul className="nav-links">
@@ -586,53 +642,173 @@ export default function App() {
 
               {/* Form Card */}
               <div className="contact-form-card">
-                {formSubmitted ? (
-                  <div style={{ textAlign: 'center', padding: '2.5rem 1rem' }}>
-                    <CheckCircle2 size={52} color="#22c55e" style={{ margin: '0 auto 1rem' }} />
-                    <h3 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '0.5rem' }}>Message Sent!</h3>
-                    <p style={{ color: 'var(--text-secondary)' }}>Thank you for reaching out, Manivanan will respond promptly.</p>
+                {formSubmitted === 'needs_activation' ? (
+                  <div className="form-success-card">
+                    <div className="form-success-icon" style={{ background: 'rgba(99, 102, 241, 0.15)', color: 'var(--primary)' }}>
+                      <Mail size={36} />
+                    </div>
+                    <h3 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+                      One-Time Activation Required!
+                    </h3>
+                    <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', lineHeight: 1.6 }}>
+                      An activation email from <strong>FormSubmit</strong> was just sent to <strong>manivanan6424@gmail.com</strong>.
+                    </p>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.25rem' }}>
+                      👉 Please open your Gmail inbox and click <strong>"Activate Form"</strong>. Once activated, every message sent from this form will land straight in your Gmail!
+                    </p>
+                    <div className="form-email-badge">
+                      <Mail size={14} />
+                      <span>Check inbox: manivanan6424@gmail.com</span>
+                    </div>
+                    <div style={{ marginTop: '1.75rem' }}>
+                      <button
+                        type="button"
+                        className="btn-primary"
+                        onClick={resetForm}
+                        id="reset-inquiry-btn"
+                      >
+                        Got it / Back to Form
+                      </button>
+                    </div>
+                  </div>
+                ) : formSubmitted === 'success' || formSubmitted === true ? (
+                  <div className="form-success-card">
+                    <div className="form-success-icon">
+                      <CheckCircle2 size={36} />
+                    </div>
+                    <h3 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+                      Inquiry Sent Successfully!
+                    </h3>
+                    <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', lineHeight: 1.6 }}>
+                      Your message and contact details have been delivered directly to Manivanan's Gmail inbox.
+                    </p>
+                    <div className="form-email-badge">
+                      <Mail size={14} />
+                      <span>Dispatched to: manivanan6424@gmail.com</span>
+                    </div>
+                    <div style={{ marginTop: '1.75rem' }}>
+                      <button
+                        type="button"
+                        className="btn-outline"
+                        onClick={resetForm}
+                        id="send-another-inquiry-btn"
+                      >
+                        Send Another Inquiry
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <form onSubmit={handleFormSubmit}>
-                    <div className="form-group">
-                      <label className="form-label" htmlFor="contact-name">Full Name</label>
-                      <input
-                        id="contact-name"
-                        type="text"
-                        className="form-input"
-                        placeholder="Your Name"
-                        required
-                        value={formState.name}
-                        onChange={e => setFormState({ ...formState, name: e.target.value })}
-                      />
+                    {formError && (
+                      <div className="form-alert-error">
+                        <AlertCircle size={20} style={{ flexShrink: 0 }} />
+                        <div>
+                          <div>{formError}</div>
+                          <a
+                            href={`mailto:manivanan6424@gmail.com?subject=${encodeURIComponent(`Portfolio Inquiry: ${formState.name} (${formState.inquiryType})`)}&body=${encodeURIComponent(formState.message)}`}
+                            style={{ textDecoration: 'underline', fontWeight: 600, color: 'inherit', marginTop: '0.25rem', display: 'inline-block' }}
+                          >
+                            Click here to open in your Email App &rarr;
+                          </a>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="form-row-2">
+                      <div className="form-group">
+                        <label className="form-label" htmlFor="contact-name">Full Name *</label>
+                        <input
+                          id="contact-name"
+                          type="text"
+                          className="form-input"
+                          placeholder="Your Name"
+                          required
+                          value={formState.name}
+                          onChange={e => setFormState({ ...formState, name: e.target.value })}
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <label className="form-label" htmlFor="contact-email">Email Address *</label>
+                        <input
+                          id="contact-email"
+                          type="email"
+                          className="form-input"
+                          placeholder="your.email@example.com"
+                          required
+                          value={formState.email}
+                          onChange={e => setFormState({ ...formState, email: e.target.value })}
+                        />
+                      </div>
                     </div>
-                    <div className="form-group">
-                      <label className="form-label" htmlFor="contact-email">Email Address</label>
-                      <input
-                        id="contact-email"
-                        type="email"
-                        className="form-input"
-                        placeholder="your.email@example.com"
-                        required
-                        value={formState.email}
-                        onChange={e => setFormState({ ...formState, email: e.target.value })}
-                      />
+
+                    <div className="form-row-2">
+                      <div className="form-group">
+                        <label className="form-label" htmlFor="contact-phone">Phone / WhatsApp (Optional)</label>
+                        <input
+                          id="contact-phone"
+                          type="tel"
+                          className="form-input"
+                          placeholder="+91 98765 43210"
+                          value={formState.phone}
+                          onChange={e => setFormState({ ...formState, phone: e.target.value })}
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <label className="form-label" htmlFor="contact-inquiry">Inquiry Reason</label>
+                        <select
+                          id="contact-inquiry"
+                          className="form-select"
+                          value={formState.inquiryType}
+                          onChange={e => setFormState({ ...formState, inquiryType: e.target.value })}
+                        >
+                          <option value="Job Opportunity / Hire Me">💼 Full-Time / Contract Job Opportunity</option>
+                          <option value="Freelance Project">🚀 Freelance Project Inquiry</option>
+                          <option value="Technical Consulting">💡 Technical Consulting</option>
+                          <option value="General Collaboration">🤝 Collaboration / General Inquiry</option>
+                        </select>
+                      </div>
                     </div>
+
                     <div className="form-group">
-                      <label className="form-label" htmlFor="contact-message">Message</label>
+                      <label className="form-label" htmlFor="contact-message">Message *</label>
                       <textarea
                         id="contact-message"
                         rows="4"
                         className="form-input"
-                        placeholder="Discuss a role, project, or collaboration..."
+                        placeholder="Please share details about your company, project scope, job position, or requirements..."
+                        required
                         value={formState.message}
                         onChange={e => setFormState({ ...formState, message: e.target.value })}
                       ></textarea>
                     </div>
-                    <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center' }} id="submit-contact-btn">
-                      <Send size={16} />
-                      <span>Send Message</span>
-                    </button>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                      <button
+                        type="submit"
+                        className="btn-primary"
+                        style={{ width: '100%', justifyContent: 'center' }}
+                        id="submit-contact-btn"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 size={18} className="animate-spin" />
+                            <span>Sending directly to manivanan6424@gmail.com...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Send size={16} />
+                            <span>Send Inquiry Directly</span>
+                          </>
+                        )}
+                      </button>
+
+                      <div style={{ textAlign: 'center', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                        Direct inbox delivery to <strong style={{ color: 'var(--primary)' }}>manivanan6424@gmail.com</strong>
+                      </div>
+                    </div>
                   </form>
                 )}
               </div>
