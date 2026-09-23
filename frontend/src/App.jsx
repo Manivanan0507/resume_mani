@@ -26,7 +26,7 @@ import {
   AlertCircle
 } from 'lucide-react'
 import './App.css'
-import maniPhoto from './assets/mani_photo.jpg'
+import maleDevGif from './assets/male_dev_wave.gif'
 
 function GithubIcon({ size = 18 }) {
   return (
@@ -99,7 +99,7 @@ export default function App() {
       })
 
       const data = await response.json()
-      
+
       if (data.message && data.message.toLowerCase().includes('activation')) {
         setFormSubmitted('needs_activation')
       } else if (data.success === 'true' || data.success === true || response.status === 200) {
@@ -161,7 +161,7 @@ export default function App() {
   const experiences = [
     {
       title: 'Full Stack Developer',
-      company: 'Zithtec',
+      company: 'Zithtech',
       period: 'June 2025 - April 2026',
       location: 'Puducherry / Tamil Nadu, India',
       desc: 'Developed and maintained enterprise web applications using React JS, React Redux, Node JS, and Express JS. Designed responsive user interfaces with React and Tailwind CSS.',
@@ -360,12 +360,16 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Hero Visual Card with Photo & Badges */}
+              {/* Hero Visual Card with AI Avatar & Badges */}
               <div className="hero-visual">
                 <div className="visual-ambient-orb"></div>
                 <div className="avatar-card-wrapper">
                   <div className="avatar-image-container">
-                    <img src={maniPhoto} alt="Manivanan V" className="avatar-image" />
+                    <img src={maleDevGif} alt="Manivanan V - Full Stack Developer Animation" className="avatar-image avatar-gif" />
+                    <div className="avatar-greeting-pill">
+                      <span className="wave-hand">👋</span>
+                      <span>Hi, Welcome!</span>
+                    </div>
                   </div>
 
                   {/* Floating Badges */}
@@ -375,7 +379,7 @@ export default function App() {
                     </div>
                     <div>
                       <div className="badge-title">Experience</div>
-                      <div className="badge-val">Zithtec (Full Stack)</div>
+                      <div className="badge-val">Zithtech (Full Stack)</div>
                     </div>
                   </div>
 
@@ -545,7 +549,7 @@ export default function App() {
             <div className="section-header">
               <span className="section-tag">Project Modules Worked</span>
               <h2 className="section-title">Enterprise Software Modules</h2>
-              <p className="section-desc">Key systems and architectural modules developed and deployed at Zithtec.</p>
+              <p className="section-desc">Key systems and architectural modules developed and deployed at Zithtech.</p>
             </div>
 
             <div className="projects-grid">
@@ -906,7 +910,7 @@ export default function App() {
               <div className="resume-section">
                 <h2 className="resume-section-title">PROFESSIONAL EXPERIENCE</h2>
                 <div className="resume-sub-heading">
-                  <div className="resume-role-title">Zithtec — Full Stack Developer</div>
+                  <div className="resume-role-title">Zithtech — Full Stack Developer</div>
                   <div className="resume-meta-date">June 2025 – April 2026</div>
                 </div>
 
